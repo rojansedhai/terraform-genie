@@ -45,6 +45,21 @@ flowchart LR
 * Go to **AWS Console > Amazon Bedrock > Model access**.
 * Request access for **Anthropic -> Claude 3 Haiku**.
 
+## 📂 Project Structure
+
+```text
+terraform-genie/
+├── app/
+│   └── main.py          # Lambda function logic (Python)
+├── infra/
+│   ├── main.tf          # Terraform resources (Lambda, API Gateway, IAM)
+│   ├── providers.tf     # AWS provider configuration
+│   └── outputs.tf       # Outputs API Endpoint & Key
+├── test_genie.py        # Client script to test the API securely
+├── .gitignore           # Ignores sensitive state files and secrets
+└── README.md            # Documentation
+
+```
 
 
 ## 📦 Deployment Guide
@@ -53,7 +68,7 @@ This project uses Terraform to deploy the entire stack (Lambda, API Gateway, IAM
 
 1. **Clone the Repository:**
 ```bash
-git clone [https://github.com/rojansedhai/terraform-genie.git](https://github.com/rojansedhai/terraform-genie.git)
+git clone https://github.com/rojansedhai/terraform-genie.git
 cd terraform-genie/infra
 
 ```
@@ -74,6 +89,7 @@ terraform apply
 
 
 *Type `yes` when prompted.*
+
 4. **Get Your Credentials:**
 After deployment, Terraform will output your API URL and your Secret Key.
 ```bash
@@ -92,7 +108,7 @@ You can test the API using `curl` or Python. You **must** include the `x-api-key
 ### Option 1: Using curl (Linux/Mac)
 
 ```bash
-curl -X POST [https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/prod/generate](https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/prod/generate) \
+curl -X POST https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/prod/generate \
   -H "Content-Type: application/json" \
   -H "x-api-key: PASTE_YOUR_KEY_HERE" \
   -d '{"description": "A secure S3 bucket with versioning"}'
@@ -134,23 +150,6 @@ resource "aws_s3_bucket" "secure_bucket" {
 
 ```
 
-
-
-## 📂 Project Structure
-
-```text
-terraform-genie/
-├── app/
-│   └── main.py          # Lambda function logic (Python)
-├── infra/
-│   ├── main.tf          # Terraform resources (Lambda, API Gateway, IAM)
-│   ├── providers.tf     # AWS provider configuration
-│   └── outputs.tf       # Outputs API Endpoint & Key
-├── test_genie.py        # Client script to test the API securely
-├── .gitignore           # Ignores sensitive state files and secrets
-└── README.md            # Documentation
-
-```
 
 ## 🛡 Security & Best Practices
 
