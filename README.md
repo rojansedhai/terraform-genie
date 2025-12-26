@@ -179,6 +179,7 @@ This project is licensed under the MIT License.
 
 ---
 
+```bash
 *Built with ❤️ by [Rojan Sedhai*](https://www.google.com/search?q=https://github.com/rojansedhai)
 
 ```
